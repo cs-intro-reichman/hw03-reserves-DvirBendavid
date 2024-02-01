@@ -39,8 +39,8 @@ public class LoanCalc {
 	*/
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {  
-    	//create variables for the rate multiplier, monthly payment and remainder
 
+		//create variables for the annual payment and remainder
 			double payment = (loan/n);
 			double remain = 1;
 
@@ -75,19 +75,20 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
 
-		//create variables for the rate multiplier, monthly payment and remainder
-
+		//create variables for the range (high and low) set payment and remainder
 		double remain = 1;
 		double high = loan;
 		double low = 1;
 		double payment = (low+high)/2;
 		iterationCounter = 0;
+
+		//loop till we reach desired payment.
 		while((high-low) > epsilon){
 
 			//calls endBalance to calc
 			remain = endBalance(loan, rate, n, payment);
 
-			//checks if the remain is negative
+			//checks the remainder and changes the range accordingly
 			if(remain < (0 - epsilon)) {
 				high = payment;
 				payment = (low + high)/2;
@@ -111,6 +112,7 @@ public class LoanCalc {
 	* interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	*/
 	private static double endBalance(double loan, double rate, int n, double payment) {
+		//create variables for remain and for rate to be easy to calc with
 		double remain = loan;
 		double nRate = (rate/100) +1;
 

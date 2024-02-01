@@ -11,7 +11,22 @@ public class LowerCase {
     * Non-letter characters are left as is.
     */
     public static String lowerCase(String s) {
-        // Replace the following statement with your code
-        return null;
+        //establish new string to output and a char to help convert;
+        String newS = "";
+        char tempC;
+
+        //goes through the original string and convert upper case chars.
+        for(int i=0; i<s.length(); i++){
+
+            if(s.charAt(i) >= 'A' && s.charAt(i) <= 'Z'){
+                tempC = (char)(s.charAt(i) + 32);
+            }
+            else{
+                tempC = s.charAt(i);
+            }
+                newS += tempC;
+
+        }
+        return newS;
     }
 }
