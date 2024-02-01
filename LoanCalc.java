@@ -40,7 +40,7 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {  
     	//create variables for the rate multiplier, monthly payment and remainder
-			double nRate = (rate/100 + 1);
+
 			double payment = (loan/n);
 			double remain = 1;
 
@@ -75,7 +75,7 @@ public class LoanCalc {
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
 
 		//create variables for the rate multiplier, monthly payment and remainder
-		double nRate = (rate/100 + 1);
+
 		double remain = 1;
 		double high = loan;
 		double low = 1;
