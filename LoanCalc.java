@@ -39,9 +39,31 @@ public class LoanCalc {
 	*/
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {  
-    	// Replace the following statement with your code
-    	return 0;
+    	//create variables for the rate multiplier, monthly payment and remainder
+			double nRate = (rate/100 + 1);
+			double payment = (loan/n);
+			double remain = 1;
+
+			//check if the remain reached desired amount
+			while(remain > epsilon){
+
+
+
+				//calc if the payment covers the loan with the rate after n payments
+				remain = endBalance(loan, rate, n, payment);
+
+				//increment counter and payment
+				iterationCounter++;
+				if(remain > epsilon)
+					payment+= 0.01;
+			}
+
+			return payment;
+
     }
+
+
+
     
     /**
 	* Uses bisection search to compute an approximation of the periodical payment 
@@ -50,9 +72,38 @@ public class LoanCalc {
 	* the number of periods (n), and epsilon, a tolerance level.
 	*/
 	// Side effect: modifies the class variable iterationCounter.
-    public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-    	// Replace the following statement with your code
-    	return 0;
+    public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
+
+		//create variables for the rate multiplier, monthly payment and remainder
+		double nRate = (rate/100 + 1);
+		double remain = 1;
+		double high = loan;
+		double low = 1;
+		double payment = loan/2;
+		iterationCounter = 0;
+		while(Math.abs(remain) > epsilon){
+
+
+			//calc if the payment covers the loan with the rate after n payments
+			remain = endBalance(loan, rate, n, payment);
+
+
+			if(remain < (0 - epsilon)) {
+				high = payment;
+				payment = (low + high)/2;
+
+			}
+
+			if(remain > epsilon) {
+				low = payment;
+				payment =(low+high)/2;
+			}
+
+			iterationCounter++;
+
+		}
+
+    	return payment;
     }
 	
 	/**
@@ -60,7 +111,13 @@ public class LoanCalc {
 	* interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	*/
 	private static double endBalance(double loan, double rate, int n, double payment) {
-		// Replace the following statement with your code
-    	return 0;
+		double remain = loan;
+		double nRate = (rate/100) +1;
+
+		for(int i =0; i< n; i++){
+			remain = ((remain-payment)*nRate);
+		}
+
+    	return remain;
 	}
 }
