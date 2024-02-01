@@ -80,7 +80,7 @@ public class LoanCalc {
 		double remain = 1;
 		double high = loan;
 		double low = 1;
-		double payment = (loan/n);
+		double payment = (low+high)/2;
 		iterationCounter = 0;
 		while((high-low) > epsilon){
 
@@ -91,16 +91,16 @@ public class LoanCalc {
 			if(remain < (0 - epsilon)) {
 				high = payment;
 				payment = (low + high)/2;
-				iterationCounter++;
+
 
 			}
 
 			if(remain > epsilon) {
 				low = payment;
 				payment =(low+high)/2;
-				iterationCounter++;
-			}
 
+			}
+				 iterationCounter++;
 		}
 
     	return payment;
