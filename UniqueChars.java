@@ -16,7 +16,7 @@ public class UniqueChars {
         char currChar;
         for(int i =0; i< s.length(); i++){
             currChar = s.charAt(i);
-            if(nStr.indexOf(currChar) == -1){
+            if(nStr.indexOf(currChar) == -1 || currChar == ' '){
                 nStr += currChar;
             }
         }
