@@ -76,6 +76,7 @@ public class LoanCalc {
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
 
 		//create variables for the range (high and low) set payment and remainder
+
 		double remain = 1;
 		double high = loan;
 		double low = 1;
@@ -101,7 +102,9 @@ public class LoanCalc {
 				payment =(low+high)/2;
 
 			}
-				 iterationCounter++;
+
+			iterationCounter++;
+
 		}
 
     	return payment;
